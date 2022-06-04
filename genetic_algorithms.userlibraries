@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="qqwing-1.3.4">
+    <archive path="/home/charly/projects/university/IS/lab2/qqwing-1.3.4.jar" />
+  </library>
+  <library name="jgap">
+    <archive path="/home/charly/projects/university/IS/lab2/jgap.jar" />
+  </library>
+</eclipse-userlibraries>
+
