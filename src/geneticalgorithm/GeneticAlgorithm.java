@@ -1,8 +1,6 @@
 package geneticalgorithm;
 
-import com.qqwing.QQWing;
 import org.jgap.*;
-import org.jgap.audit.EvolutionMonitor;
 import org.jgap.event.EventManager;
 import org.jgap.impl.*;
 
@@ -77,7 +75,7 @@ public class GeneticAlgorithm {
 
     private Population generatePopulation() throws InvalidConfigurationException {
         int count = (int) Arrays.stream(sudoku).filter(c -> c == 0).count();
-        var baseGenes = generateValidGenes();
+        List<List<Gene>> baseGenes = generateValidGenes();
         IChromosome[] chromosomes = new IChromosome[POPULATION];
 
         for (int i = 0; i < POPULATION; i++) {
@@ -91,7 +89,7 @@ public class GeneticAlgorithm {
     }
 
     private void shuffleGenes(List<List<Gene>> genes) {
-        for (var geneList : genes) {
+        for (List<Gene> geneList : genes) {
             Collections.shuffle(geneList, new Random(1));
         }
     }

@@ -4,7 +4,6 @@ import org.jgap.*;
 import org.jgap.impl.CrossoverOperator;
 
 import java.util.List;
-import java.util.Vector;
 
 public class RowConstrainedCrossoverOperator extends CrossoverOperator {
     private final SudokuConverter converter;

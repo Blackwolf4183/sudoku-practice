@@ -4,7 +4,6 @@ import org.jgap.impl.MutationOperator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.stream.IntStream;
 
 public class RowConstrainedMutationOperator extends MutationOperator {

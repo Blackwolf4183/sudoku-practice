@@ -39,11 +39,11 @@ public class Main {
         Arrays.stream(sudoku).forEach(c -> System.out.print(" " + c));
         System.out.println();
         mySudoku.printPuzzle();
-        var algorithm = new GeneticAlgorithm(sudoku);
+        GeneticAlgorithm algorithm = new GeneticAlgorithm(sudoku);
         System.out.println("Solution:");
         mySudoku.solve();
         mySudoku.printSolution();
-        var sol = algorithm.solve();
+        int[] sol = algorithm.solve();
         mySudoku.setPuzzle(sol);
         mySudoku.printPuzzle();
     }
