@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class SudokuFitnessFunction extends FitnessFunction {
 
-    int[] sudoku; //we should change that name for sth that reminds it is only a template
+    int[] sudoku; 
 
     public SudokuFitnessFunction(int[] sudoku) {
         this.sudoku = sudoku;
