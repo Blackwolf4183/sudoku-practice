@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class GeneticAlgorithm {
 
-    private final static int POPULATION = 25;
+    private final static int POPULATION = 20; //check other values
 
     private final int[] sudoku;
     private final Configuration configuration;
@@ -82,9 +82,9 @@ public class GeneticAlgorithm {
         // get the fittest chromosome
         IChromosome bestSol = population.getFittestChromosome();
 
-        System.out.println("The best solution has a fitness value of " +
+        System.out.println("Fitness value of the best solution: " +
                 bestSol.getFitnessValue());
-        System.out.println("It contained the following: ");
+        System.out.println("Containing the following: ");
 
         return converter.chromosomeToSudoku(bestSol);
     }
