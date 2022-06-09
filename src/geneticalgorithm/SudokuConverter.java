@@ -1,35 +1,39 @@
 package geneticalgorithm;
 
 import org.jgap.IChromosome;
-import org.jgap.RandomGenerator;
 
 import java.util.*;
 
+import org.jgap.RandomGenerator;
+
 public class SudokuConverter {
-    private final int[] generatedSudoku;
-    private final RandomGenerator random;
+    private final int[] sudoku;
+    private final RandomGenerator randomGen;
 
-    private final ArrayList<Integer> rowBoundaries;
+    private final ArrayList<Integer> boundaries;
 
-    public SudokuConverter(int[] generatedSudoku, RandomGenerator random) {
-        this.generatedSudoku = generatedSudoku;
-        rowBoundaries = new ArrayList<>();
-        this.random = random;
+
+    //constructor
+    public SudokuConverter(int[] sudoku, RandomGenerator randomGen) {
+        this.sudoku = sudoku;
+        boundaries = new ArrayList<>();
+        this.randomGen = randomGen;
         initMap();
     }
 
     public ArrayList<Integer> getBoundaries() {
-        return rowBoundaries;
+        return boundaries;
     }
 
+    //initializes the map
     private void initMap() {
         int genId = 0;
         int last = -1;
 
-        for (int i = 0; i < generatedSudoku.length; i++) {
-            if (generatedSudoku[i] == 0) {
+        for (int i = 0; i < sudoku.length; i++) {
+            if (sudoku[i] == 0) {
                 if((i + 1) % 9 == 0) {
-                    rowBoundaries.add(genId);
+                    boundaries.add(genId);
                     last = -1;
                 } else {
                     last = genId;
@@ -37,7 +41,7 @@ public class SudokuConverter {
                 genId++;
             } else {
                 if(last != -1 && (i + 1) % 9 == 0) {
-                    rowBoundaries.add(last);
+                    boundaries.add(last);
                     last = -1;
                 }
             }
@@ -45,20 +49,20 @@ public class SudokuConverter {
     }
 
     public int getRandomEmptyPosition() {
-        int i = random.nextInt(rowBoundaries.size());
-        return rowBoundaries.get(i);
+        int i = randomGen.nextInt(boundaries.size());
+        return boundaries.get(i);
     }
 
-    public int[] chromosomeToSudoku(IChromosome chrom){
+    public int[] chromosomeToSudoku(IChromosome chromosome){
         int[] readySudoku = new int[81];
         int placeInChromosome = 0;
-        for (int i = 0; i < generatedSudoku.length; i++) {
-            if (generatedSudoku[i] == 0) {
-                readySudoku[i] = (Integer) chrom.getGene(placeInChromosome).getAllele();
+        for (int i = 0; i < sudoku.length; i++) {
+            if (sudoku[i] == 0) {
+                readySudoku[i] = (Integer) chromosome.getGene(placeInChromosome).getAllele();
                 placeInChromosome += 1;
             }
             else{
-                readySudoku[i] = generatedSudoku[i];
+                readySudoku[i] = sudoku[i];
             }
         }
         return readySudoku;
