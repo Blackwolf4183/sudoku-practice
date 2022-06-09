@@ -1,20 +1,20 @@
 package geneticalgorithm;
 
-import org.jgap.*;
-import org.jgap.impl.CrossoverOperator;
-
 import java.util.List;
+import org.jgap.*;
+
+import org.jgap.impl.CrossoverOperator;
 
 public class RowConstrainedCrossoverOperator extends CrossoverOperator {
     private final SudokuConverter converter;
 
-    public RowConstrainedCrossoverOperator(Configuration a_configuration, SudokuConverter converter) throws InvalidConfigurationException {
-        super(a_configuration, 1 );
+    public RowConstrainedCrossoverOperator(Configuration config, SudokuConverter converter) throws InvalidConfigurationException {
+        super(config, 1 );
         this.converter = converter;
     }
 
     @Override
-    protected void doCrossover(IChromosome firstMate, IChromosome secondMate, List a_candidateChromosomes, RandomGenerator generator) {
+    protected void doCrossover(IChromosome firstMate, IChromosome secondMate, List candidateChromosomes, RandomGenerator generator) {
         Gene[] firstGenes = firstMate.getGenes();
         Gene[] secondGenes = secondMate.getGenes();
         int locus = converter.getRandomEmptyPosition() + 1;
@@ -34,9 +34,11 @@ public class RowConstrainedCrossoverOperator extends CrossoverOperator {
             Object firstAllele = gene1.getAllele();
             gene1.setAllele(gene2.getAllele());
             gene2.setAllele(firstAllele);
+            
         }
 
-        a_candidateChromosomes.add(firstMate);
-        a_candidateChromosomes.add(secondMate);
+        candidateChromosomes.add(firstMate);
+
+        candidateChromosomes.add(secondMate);
     }
 }
