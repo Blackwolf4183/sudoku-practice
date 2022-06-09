@@ -28,6 +28,7 @@ public class SudokuConverter {
     //initializes the map
     private void initMap() {
         int genId = 0;
+
         int last = -1;
 
         for (int i = 0; i < sudoku.length; i++) {

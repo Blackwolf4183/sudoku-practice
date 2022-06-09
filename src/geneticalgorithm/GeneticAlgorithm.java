@@ -131,7 +131,8 @@ public class GeneticAlgorithm {
             Integer val = sudoku[i];
 
             if (val != 0) candidates.remove(val);
-        
+            
+
             if ((i + 1) % 9 == 0) {
                 List<Gene> genes = new ArrayList<>();
                 for (int gen : candidates) {

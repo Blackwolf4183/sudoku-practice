@@ -29,7 +29,7 @@ public class App {
 
         GeneticAlgorithm algorithm = new GeneticAlgorithm(sdkAsArray);
 
-        System.out.println("Solution:");
+        System.out.println("Solution to sudoku:");
         sudoku.solve();
         sudoku.printSolution();
         
