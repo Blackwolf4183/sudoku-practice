@@ -7,91 +7,108 @@ import java.util.Arrays;
 
 public class SudokuFitnessFunction extends FitnessFunction {
 
-    int[] sudoku; //we should change that name for sth that reminds it is only a template
+    int[] sudoku;
 
     public SudokuFitnessFunction(int[] sudoku) {
         this.sudoku = sudoku;
     }
 
     @Override
-    protected double evaluate(IChromosome iChromosome) { //takes each chromosome and then needs to calculate fitness for that
-        //so i need to change chromosome to sudoku and then do the functions i wrote
+    protected double evaluate(IChromosome chromosome) { 
+        /*  
+         *  Function that adds chromosomes to the empty cells of our sudoku
+         *  and then calculates its fitness checking columns and squares
+         */
+        int[] chromosomeSudoku = chromosomeToSudoku(chromosome);
+        return checkColumns(chromosomeSudoku) + checkSquares(chromosomeSudoku);
 
-        //here i need to use the
-        int[] readySudoku = chromosomeToSudoku(iChromosome);
-        int columnConstraints = checkColumnConstraints(readySudoku);
-        int squareConstraints = checkSquareConstraints(readySudoku);
-        return columnConstraints + squareConstraints;
     }
 
-    private int[] chromosomeToSudoku(IChromosome chrom){
-        int[] readySudoku = new int[81];
-        int placeInChromosome = 0;
+    private int[] chromosomeToSudoku(IChromosome c){
+        /*
+         *  Function that creates a sudoku which
+         *  fills the empty cells with chromosomes
+         */
+        int[] chromosomeSudoku = new int[81];   // A sudoku has 81 cells
+        int pos = 0;
+
         for (int i = 0; i < sudoku.length; i++) {
             if (sudoku[i] == 0) {
-                readySudoku[i] = (Integer) chrom.getGene(placeInChromosome).getAllele();
-                placeInChromosome += 1;
-            }
-            else{
-                readySudoku[i] = sudoku[i];
-            }
+                chromosomeSudoku[i] = (Integer) c.getGene(pos).getAllele();
+                pos += 1;
+            } else
+                chromosomeSudoku[i] = sudoku[i];
         }
-        return readySudoku;
+
+        return chromosomeSudoku;
     }
 
-    private int checkColumnConstraints(int[] readySudoku) {
-        int fulfilledConstraints = 0;
-        int cols = 9;
+    private int checkColumns(int[] sudoku) {
+        /*
+         *  Function that checks the columns of the sudoku
+         *  to see the possible options to take
+         */
+        int constrains = 0;
+        int cols = 9;               // Number of columns of the sudoku
+        int pos;                    // Var to track array position
         int[] cells = new int[cols];
 
-        for (int i = 0; i < cols; i++) { // instead of 9 the square root of len(readysudoku) ??
-            Arrays.fill(cells, 0);
+        for (int row = 0; row < cols; row++) { 
+            
+            Arrays.fill(cells, 0); // We initialize the array with 0's
+            pos = 0;
 
-            int j = 0;
-            while(j < cols) {
-                int number = readySudoku[j * cols + i];
-                int placeInTable = number - 1;
-                if(cells[placeInTable] == 1) {
-                    break;
-                }
+            while(pos < cols) {
 
-                cells[placeInTable] += 1;
-                j++;
+                int numCell = sudoku[pos * cols + row];
+                int posInTable = numCell - 1;
+                
+                if(cells[posInTable] == 1) break;
+
+                cells[posInTable] += 1;
+                pos++;
             }
 
-            if (j == cols) {
-                fulfilledConstraints += 1;
-            }
+            if (pos == cols) constrains += 1;
+
         }
-        return fulfilledConstraints;
+
+        return constrains;
     }
 
 
-    private int checkSquareConstraints(int [] readySudoku) {
-        int fulfilledConstraints = 0;
-        int[] tableForNumbers = new int[9];
-        int numOfCol = 9;
-        int numOfSquaresInCol = 3;
+    private int checkSquares(int [] sudoku) {
+        /*
+         *  Function that checks the squares of the sudoku
+         *  to see the possible options to take
+         */
+        int constrains = 0;
+        int pos;
+        int cols = 9, rows = 3;
+        int[] cells = new int[cols];  
+        
+        for (int i = 0; i < cols; i++) {
+            Arrays.fill(cells, 0); // We initialize the array with 0's
 
-        for (int i = 0; i < numOfCol; i++) {
-            Arrays.fill(tableForNumbers, 0);
-            for (int j = 0; j < numOfSquaresInCol; j++) {
-                for (int k = 0; k < numOfSquaresInCol; k++) {
-                    int position = 9 * (i / 3 * 3 + j) + i % 3 * 3 + k; // needs to be int !
-                    int number = readySudoku[position];
-                    int placeInTable = number - 1;
-                    tableForNumbers[placeInTable] += 1;
+            for (int j = 0; j < rows; j++) {
+                for (int k = 0; k < rows; k++) {
+                    pos = 9 * (i / 3 * 3 + j) + i % 3 * 3 + k; // Must return an integer position
+                    int numCell = sudoku[pos];
+                    cells[numCell - 1] += 1;
                 }
             }
 
-            if (CheckIfFulfilled(tableForNumbers)) {
-                fulfilledConstraints += 1;
-            }
+            if (CheckIfFulfilled(cells)) 
+                constrains += 1;
         }
-        return fulfilledConstraints;
+
+        return constrains;
     }
 
     public boolean CheckIfFulfilled(int[] table) {
+        /*
+         *  Function that checks if all constrains have been checked
+         */
         return Arrays.stream(table).allMatch(v -> v == 1);
     }
 }
