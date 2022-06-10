@@ -91,7 +91,7 @@ public class GeneticAlgorithm {
 
     // method to generate the population
     private Population generatePopulation() throws InvalidConfigurationException {
-        int amount = (int) Arrays.stream(sudoku).filter(c -> c == 0).amount();
+        int amount = (int) Arrays.stream(sudoku).filter(c -> c == 0).count();
         List<List<Gene>> baseGenes = generateValidGenes();
         IChromosome[] chromosomes = new IChromosome[POPULATION];
 
