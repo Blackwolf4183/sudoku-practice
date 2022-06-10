@@ -70,8 +70,8 @@ public class RowConstrainedMutationOperator extends MutationOperator {
                                 }
 
                                 int geneToExchange = range[generator.nextInt(range.length)];
+                                // get to both genes (id = j and id = geneToExchange) and exchange them
 
-                                //somehow get to both genes (id = j and id = geneToExchange) and exchange them
                                 Object tempValue = genes[j].getAllele();
                                 genes[j].setAllele(genes[geneToExchange].getAllele());
                                 genes[geneToExchange].setAllele(tempValue);
