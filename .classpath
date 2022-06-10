@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/jgap-examples.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/jgap-tests.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/jgap.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/appframework-1.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/commons-cli-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/commons-lang-2.1.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/commons-math-2.0.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/jcgrid.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/jcommon-1.0.14.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/jettison-1.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/jfreechart-1.0.11.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/junit-addons-1.4.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/junit3.8.1.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/swing-layout-1.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/swing-worker-1.1.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/TableLayout.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/trove-2.0.2.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/xpp3_min-1.1.3.4.O.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/xstream-1.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/jgap_3.6.3_full/lib/xstream-1.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/qqwing/qqwing-1.3.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
